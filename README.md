@@ -7,9 +7,6 @@
 
 ```sh
 make install # setup
-```
-
-```sh
 make deploy # deploy
 ```
 
