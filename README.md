@@ -3,15 +3,13 @@
 
 ## Domain: https://arakov.club/
 
-## To setup
+## Instruction
 
 ```sh
-make setup
+make install # setup
 ```
 
-## To deploy
-
 ```sh
-make deploy
+make deploy # deploy
 ```
 
