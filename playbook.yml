@@ -13,6 +13,14 @@
       ansible.builtin.pip:
         name: docker
 
+- name: Install datadog
+  hosts: webservers
+  remote_user: root
+
+  tasks:
+    - include_role:
+        name: datadog.datadog
+
 - name: Deploy application
   hosts: all
   remote_user: root
@@ -23,7 +31,7 @@
         name: redmine
         image: redmine:latest
         published_ports:
-          - 3000:3000
+          - "{{ app_port }}:3000"
         restart_policy: always
         restart: yes
         container_default_behavior: no_defaults
