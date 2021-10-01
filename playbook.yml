@@ -18,6 +18,7 @@
   remote_user: root
 
   tasks:
+    name: Setup datadog
     - include_role:
         name: datadog.datadog
 
