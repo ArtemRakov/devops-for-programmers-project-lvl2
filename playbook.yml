@@ -1,0 +1,30 @@
+---
+
+- name: Prepare webservers
+  hosts: all
+  remote_user: root
+  tasks:
+    - name: Install packages
+      ansible.builtin.apt:
+        name: python3-pip
+        update_cache: yes
+
+    - name: Install Docker Module for Python
+      ansible.builtin.pip:
+        name: docker
+
+- name: Deploy application
+  hosts: all
+  remote_user: root
+
+  tasks:
+    - name: Run container
+      community.docker.docker_container:
+        name: redmine
+        image: redmine:latest
+        published_ports:
+          - 3000:3000
+        restart_policy: always
+        restart: yes
+        container_default_behavior: no_defaults
+        pull: yes
