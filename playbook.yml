@@ -28,3 +28,9 @@
         restart: yes
         container_default_behavior: no_defaults
         pull: yes
+        env:
+          REDMINE_DB_POSTGRES: "{{ db_host }}"
+          REDMINE_DB_PORT: "{{ db_port }}"
+          REDMINE_DB_USERNAME: "{{ db_username }}"
+          REDMINE_DB_PASSWORD: "{{ db_password }}"
+          REDMINE_DB_DATABASE: "{{ db_name }}"
