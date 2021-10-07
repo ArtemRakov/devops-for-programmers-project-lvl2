@@ -2,7 +2,6 @@
 
 - name: Prepare webservers
   hosts: all
-  remote_user: root
   tasks:
     - name: Install packages
       ansible.builtin.apt:
@@ -13,18 +12,8 @@
       ansible.builtin.pip:
         name: docker
 
-- name: Install datadog
-  hosts: webservers
-  remote_user: root
-
-  tasks:
-    - name: Setup datadog
-      include_role:
-        name: datadog.datadog
-
 - name: Deploy application
   hosts: all
-  remote_user: root
   tags: deploy
 
   tasks:
@@ -38,9 +27,19 @@
         name: redmine
         image: redmine:latest
         published_ports:
-          - "{{ app_port }}:3000"
+          - 3000:3000
         restart_policy: always
         restart: yes
-        container_default_behavior: no_defaults
         pull: yes
         env_file: .env
+
+- name: Install datadog
+  hosts: webservers
+  tags: monitoring
+
+  tasks:
+    - name: Setup datadog
+      include_role:
+        name: datadog.datadog
+
+

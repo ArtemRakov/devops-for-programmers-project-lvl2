@@ -6,7 +6,13 @@
 ## Instruction
 
 ```sh
-make install # setup
-make deploy # deploy
+make install # install all ansible dependencies and creates vault-password file
+make provision-deploy # deploy
+```
+
+After provision you can use this command just to deploy:
+
+```sh
+make deploy
 ```
 

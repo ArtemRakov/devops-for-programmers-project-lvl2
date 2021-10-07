@@ -1,9 +1,9 @@
 install:
 	ansible-galaxy role install -r requirements.yml
 	ansible-galaxy collection install -r requirements.yml
+	make touch-vault-password-file
 
-
-provision_and_deploy:
+provision-and-deploy:
 	ansible-playbook -i inventory.ini -v --vault-password-file vault-password playbook.yml
 
 deploy:
